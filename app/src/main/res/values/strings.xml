@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Composition</string>
+    <string name="overlay_channel_name">Composition Overlay</string>
+    <string name="overlay_notification_title">Composition đang hiển thị lớp gợi ý</string>
+    <string name="overlay_notification_text">Mở ứng dụng Camera mặc định để căn chỉnh tư thế theo lớp mờ.</string>
+</resources>

@@ -1,0 +1,39 @@
+name: Build Composition APK
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Assemble Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Set up Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.9
+
+      - name: Build Debug APK
+        run: gradle assembleDebug --no-daemon --stacktrace
+
+      - name: Rename APK for easy install
+        run: cp app/build/outputs/apk/debug/app-debug.apk Composition_v2.0.0.apk
+
+      - name: Upload Composition APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Composition-v2.0.0-APK
+          path: Composition_v2.0.0.apk
+          retention-days: 30
